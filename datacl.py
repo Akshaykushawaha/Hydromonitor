@@ -1,10 +1,23 @@
 # import pandas lib as pd
+import datetime
+import pytz
 import pandas as pd
 from os.path import exists
 import openpyxl
 
 def get_azure_data():
-    row = [1,2,3,4,5,6,7]
+    ct = str(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
+    ct = ct[11:16]
+    h=int(ct[0:2])
+    if (h>12):
+        ct = ct[3:]
+        h-=12
+        t="PM"
+    else:
+        t="AM"
+    time=str(h)+":"+ct+" "+t
+    print(time)
+    row = [1,2,3,4,5,6,time]
     return row
 
 def len_of_excel():     

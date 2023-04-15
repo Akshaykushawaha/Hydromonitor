@@ -13,7 +13,7 @@ def fdata_func():                       # full data refresh
     upd_time=getdata("time")            # getting last upadte time from excel
     d={}
     d["val"] = str(upd_time)                 # saving it in dict
-    return jsonify(d)                   # returning the value
+    return jsonify(d)                        # returning the value
 
 @app.route('/odata',methods=['GET'])
 def odata_func():                                  #only data fetch
