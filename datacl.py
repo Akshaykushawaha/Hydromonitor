@@ -50,6 +50,8 @@ def write_to_excel(len_excel,new_row):
     workbook.save('data.xlsx')
 
 def getdata(cl_name):
+    if (exists('data.xlsx')==False):
+        len_of_excel()
     # read by default 1st sheet of an excel file
     dataframe1 = pd.read_excel('data.xlsx')
     cl_data = list(dataframe1[cl_name])
