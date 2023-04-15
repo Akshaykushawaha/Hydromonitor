@@ -10,18 +10,16 @@ def fdata_func():                       # full data refresh
     len_excel = len_of_excel()          # get number of last row in excel
     if (row!=[]):                       # check if data was avaialabe from azure
         write_to_excel(len_excel,row)   # updating excel
-    upd_time=getdata("time")            # getting last upadte time from excel
     d={}
-    d["val"] = str(upd_time)                 # saving it in dict
+    d["val"] = str(getdata("time"))     # getting last upadte time from excel and saving it in dict
+    d["temp"] = str(getdata("temp")) 
+    d["humidity"] = str(getdata("humidity")) 
+    d["light"] = str(getdata("light")) 
+    d["soil"] = str(getdata("soil")) 
+    d["water"] = str(getdata("water")) 
+    d["npk"] = str(getdata("npk")) 
     return jsonify(d)                        # returning the value
-
-@app.route('/odata',methods=['GET'])
-def odata_func():                                  #only data fetch
-    upd_time=getdata(str(request.args["sensor"]))  # getting last upadte value of that sensor from excel
-    d={}
-    d["val"] = str(upd_time)
-    return jsonify(d)
 
 
 if __name__=="__main__":
-    app.run(port=32)
+    app.run(port=31)
