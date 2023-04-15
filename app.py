@@ -4,22 +4,22 @@ from datacl import get_azure_data,len_of_excel,write_to_excel,getdata
 
 app = Flask("__name__")
 
-@app.route('/fdata')
-def fdata_func():                       # full data refresh
-    row = get_azure_data()              # get data from azure in a row
-    len_excel = len_of_excel()          # get number of last row in excel
-    if (row!=[]):                       # check if data was avaialabe from azure
-        write_to_excel(len_excel,row)   # updating excel
-    d={}
-    d["val"] = str(getdata("time"))     # getting last upadte time from excel and saving it in dict
-    d["val"] = str(getdata("time"))     # getting last upadte time from excel and saving it in dict
+@app.route('/fdata',methods=['GET'])
+def fdata_func():                           # full data refresh
+    if(request.args["sensor"]=="yes"):
+        row = get_azure_data()              # get data from azure in a row
+        len_excel = len_of_excel()          # get number of last row in excel
+        if (row!=[]):                       # check if data was avaialabe from azure
+            write_to_excel(len_excel,row)   # updating excel
+    d={}  
+    d["val"] = str(getdata("time"))         # getting last upadte time from excel and saving it in dict
     d["temp"] = str(getdata("temp")) 
     d["humidity"] = str(getdata("humidity")) 
     d["light"] = str(getdata("light")) 
     d["soil"] = str(getdata("soil")) 
     d["water"] = str(getdata("water")) 
     d["npk"] = str(getdata("npk")) 
-    return jsonify(d)                   # returning the value
+    return jsonify(d)                       # returning the value
 
 
 if __name__=="__main__":
