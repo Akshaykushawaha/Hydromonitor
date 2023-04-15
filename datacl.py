@@ -14,6 +14,7 @@ def get_azure_data():
         h-=12
         t="PM"
     else:
+        ct = ct[3:]
         t="AM"
     time=str(h)+":"+ct+" "+t
     print(time)
