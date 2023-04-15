@@ -12,14 +12,15 @@ def fdata_func():                       # full data refresh
         write_to_excel(len_excel,row)   # updating excel
     d={}
     d["val"] = str(getdata("time"))     # getting last upadte time from excel and saving it in dict
-    d["temp"] = str(getdata("temp")) 
-    d["humidity"] = str(getdata("humidity")) 
-    d["light"] = str(getdata("light")) 
-    d["soil"] = str(getdata("soil")) 
-    d["water"] = str(getdata("water")) 
-    d["npk"] = str(getdata("npk")) 
-    return jsonify(d)                        # returning the value
+    return jsonify(d)                   # returning the value
+
+@app.route('/odata',methods=['GET'])
+def odata_func():                                  #only data fetch
+    upd_time=getdata(str(request.args["sensor"]))  # getting last upadte value of that sensor from excel
+    d={}
+    d["val"] = str(upd_time)
+    return jsonify(d)
 
 
 if __name__=="__main__":
-    app.run(port=31)
+    app.run(port=32)
