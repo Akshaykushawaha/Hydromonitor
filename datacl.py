@@ -5,7 +5,8 @@ import pandas as pd
 from os.path import exists
 import openpyxl
 
-def get_azure_data():
+def get_azure_data(data):
+    water,light,soil,temp,humidity,npk=data.split(" ")
     ct = str(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
     ct = ct[11:16]
     h=int(ct[0:2])
@@ -18,7 +19,7 @@ def get_azure_data():
         t="AM"
     time=str(h)+":"+ct+" "+t
     print(time)
-    row = [1,2,3,4,5,6,time]
+    row = [temp,humidity,light,water,soil,npk,time]
     return row
 
 def len_of_excel():     
