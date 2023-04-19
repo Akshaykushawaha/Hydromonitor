@@ -56,7 +56,12 @@ def getdata(cl_name):
     # read by default 1st sheet of an excel file
     dataframe1 = pd.read_excel('data.xlsx')
     cl_data = list(dataframe1[cl_name])
-    data=cl_data[-1]
+    if (cl_data==[] and cl_name=="time"):
+        data="xx:xx xx"
+    if (cl_data==[] and cl_name!="time"):
+        data="xx"
+    if(cl_data!=[]):
+        data=cl_data[-1]
     return data
 
 
