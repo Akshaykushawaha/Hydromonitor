@@ -24,6 +24,7 @@ def fdata_func():                           # full data refresh
 
 @app.route('/putdata',methods=['GET'])
 def put_func():
+    getdata("time")
     a = request.args["sensor"]
     row = get_azure_data(a)              # get data from azure in a row
     len_excel = len_of_excel()          # get number of last row in excel
