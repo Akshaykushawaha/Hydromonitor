@@ -18,7 +18,9 @@ def fdata_func():                           # full data refresh
     d["humidity"] = str(getdata("humidity")) 
     d["light"] = str(getdata("light")) 
     d["soil"] = str(getdata("soil")) 
-    d["water"] = str(getdata("water")) 
+    d["absoil"] = str(getdata("absoil"))
+    d["water"] = str(getdata("water"))
+    d["flap"] = str(getdata("flap"))
     d["npk"] = str(getdata("npk")) 
     return jsonify(d)                       # returning the value
 
@@ -38,4 +40,4 @@ def put_func():
     
     
 if __name__=="__main__":
-    app.run(port=60)
+    app.run(port=71)

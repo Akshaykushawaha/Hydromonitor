@@ -6,7 +6,7 @@ from os.path import exists
 import openpyxl
 
 def get_azure_data(data):
-    water,light,soil,temp,humidity,npk=data.split(" ")
+    water,light,soil,absoil,temp,humidity,npk,flap=data.split(" ")
     ct = str(datetime.datetime.now(pytz.timezone('Asia/Kolkata')))
     ct = ct[11:16]
     h=int(ct[0:2])
@@ -19,7 +19,7 @@ def get_azure_data(data):
         t="AM"
     time=str(h)+":"+ct+" "+t
     print(time)
-    row = [temp,humidity,light,water,soil,npk,time]
+    row = [temp,humidity,light,water,soil,absoil,npk,flap,time]
     return row
 
 def len_of_excel():     
@@ -30,7 +30,7 @@ def len_of_excel():
         sheet = wb['Sheet']
         sheet.title = 'Sheet1'
         row=1
-        new_row = ['temp','humidity','light','soil','water','npk','time']
+        new_row = ['temp','humidity','light','soil','absoil','water','npk','flap','time']
         for col, entry in enumerate(new_row, start=1):
             sheet.cell(row=row, column=col, value=entry)
         wb.save(filename='data.xlsx')
