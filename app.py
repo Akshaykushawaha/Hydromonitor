@@ -21,7 +21,9 @@ def fdata_func():                           # full data refresh
     d["absoil"] = str(getdata("absoil"))
     d["water"] = str(getdata("water"))
     d["flap"] = str(getdata("flap"))
-    d["npk"] = str(getdata("npk")) 
+    d["nitro"] = str(getdata("nitro"))
+    d["phos"] = str(getdata("phos"))
+    d["pott"] = str(getdata("pott"))
     return jsonify(d)                       # returning the value
 
 @app.route('/putdata',methods=['GET'])
